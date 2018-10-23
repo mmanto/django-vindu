@@ -1,0 +1,10 @@
+DATABASES = {
+    'default' : {
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'NAME': 'vindu_postgres',
+        'USER': 'vindu_postgres',
+        'PASSWORD': 'anting2018',
+        'HOST': 'db',
+        'PORT': '5432',
+    },
+}

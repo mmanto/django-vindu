@@ -1,0 +1,131 @@
+{% extends 'base.html' %}
+{% load i18n static %}
+{% block extrahead %}
+    <link href="{% static 'carrito/css/dashboard_pedidos.css' %}" rel="stylesheet" type="text/css">
+{% endblock %}
+{% block content %}
+    <div class="col-md-12 col-sm-12 col-xs-12">
+      <div class="btn bg-green btn-small btn-filter pull-right">Año <i class="fas fa-angle-down"></i></div>
+      <div class="btn bg-green btn-small btn-filter pull-right">Mes <i class="fas fa-angle-down"></i></div>
+    </div>
+  <div class="col-md-12">
+    <h3>
+      <div class="cuadros-detalle">
+        <span>
+        <h1>72</h1>
+        <h4>ventas</h4>
+        </span>
+      </div>
+      <div class="cuadros-detalle">
+        <span>
+        <h1>28</h1>
+        <h4>ventas pendientes</h4>
+        </span>
+      </div>
+      <div class="cuadros-detalle">
+        <span>
+        <h1>$60.000</h1>
+        <h4>total facturado</h4>
+        </span>
+      </div>
+    </h3>
+  </div>
+  <div id="no-more-tables">
+  <table class="table table-sm table-responsive table-condensed cf">
+    <thead class="cf">
+      <tr>
+        <th>Avatar</th>
+        <th>Usuario</th>
+        <th>Fecha</th>
+        <th>Producto</th>
+        <th>Monto</th>
+        <th>Pendiente de pago</th>
+        <th>Pendiente de recolección</th>
+        <th>Cancelado</th>
+        <th>Devuelto</th>
+        <th>Entregado</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for pedido in pedidos %}
+      <tr>
+        <td data-title="Avatar">{% if pedido.usuario_comprador.foto_avatar %} <img src="{{pedido.usuario_comprador.foto_avatar.url}}" class="avatar-img"></img>{% endif %}</td>
+        <td data-title="Usuario">{{pedido.usuario_comprador}}</td>
+        <td data-title="Fecha">{{pedido.fecha_pedido|date:"d/m/y"}}</td>
+        <td data-title="Producto">
+          <a data-toggle="collapse" data-target="#detalle-productos-{{pedido.pk}}" class="accordion-toggle">
+          {{pedido.cantidad_productos_pedidos}}{% if pedido.cantidad_productos_pedidos > 1%} productos{% else %} producto{% endif%}
+          </a>
+        </td>
+        <td data-title="Monto">$ {{pedido.importe_total}}</td>
+        <td data-title="P. de pago">
+          {% if pedido.estado_pedido == "I" %}
+            <i class="far fa-check-circle"></i>
+          {% else%}
+            <i class="far fa-times-circle"></i>
+          {% endif %}
+        </td>
+        <td data-title="P. de recolección">
+          {% if pedido.estado_pedido == "P" %}
+            <i class="far fa-check-circle"></i>
+          {% else%}
+            <i class="far fa-times-circle"></i>
+          {% endif %}
+        </td>
+        <td data-title="Cancelado">
+          {% if pedido.estado_pedido == "C" %}
+            <i class="far fa-check-circle"></i>
+          {% else%}
+            <i class="far fa-times-circle"></i>
+          {% endif %}
+        </td>
+        <td data-title="Devuelto">
+          {% if pedido.estado_pedido == "D" %}
+            <i class="far fa-check-circle"></i>
+          {% else%}
+            <i class="far fa-times-circle"></i>
+          {% endif %}
+        </td>
+        <td data-title="Entregado">
+          {% if pedido.estado_pedido == "E" %}
+            <i class="far fa-check-circle"></i>
+          {% else%}
+            <i class="far fa-times-circle"></i>
+          {% endif %}
+        </td>
+      </tr>
+      <tr>
+        <td colspan="12" class="hiddenRow sub-tabla">
+          <div class="accordian-body collapse" id="detalle-productos-{{pedido.pk}}">
+          <table class="table table-striped info">
+            <thead>
+              <tr>
+                <th>Producto</th>
+                <th>Tipo</th>
+                <th>Talle</th>
+                <th>Color</th>
+                <th>Sku</th>
+                <th>Cantidad</th>
+              </tr>
+            </thead>
+            <tbody>
+              {% for ap in pedido.articulos_pedido.all %}
+              <tr>
+                <td data-title="Producto">{{ap.articulo.producto}}</td>
+                <td data-title="Tipo">{{ap.articulo.producto.tipo_prenda}}</td>
+                <td data-title="Talle">{{ap.articulo.talle}}</td>
+                <td data-title="Color">{{ap.articulo.producto.color}}</td>
+                <td data-title="Sku">{{ap.articulo.shop_sku}}</td>
+                <td data-title="Cantidad">{{ap.cantidad}}</td>
+              </tr>
+              {% endfor %}
+            </tbody>
+          </table>
+          </div>
+        </td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+  </div>
+{% endblock %}

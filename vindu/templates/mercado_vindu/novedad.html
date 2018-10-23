@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+{% load static rest_framework %}
+
+{% block extrahead %}
+    <link href="{% static 'mercado_vindu/css/novedad.css' %}" rel="stylesheet" type="text/css">
+{% endblock %}
+
+{% block content %}
+
+<div class="row">
+{% if novedad %}
+<h2 class="title-section">MODIFICAR NOVEDAD</h2>
+{% else %}
+<h2 class="title-section">AGREGAR NOVEDAD</h2>
+{% endif %}
+
+<form action="." id="form-local" class="form" method="POST" enctype="multipart/form-data">
+  {% csrf_token %}
+  <div class="col-md-12">
+    {% render_field serializer.titulo style=style %}
+  </div>
+  <div class="col-md-12">
+    {% render_field serializer.descripcion style=style %}
+  </div>
+  <div class="col-md-12">
+    {% render_field imagen_serializer.foto_novedad style=style %}
+  </div>
+  {% if novedad.foto_rel_novedad.all %}
+  <div class="col-md-12">
+    {% for imagen in novedad.foto_rel_novedad.all %}
+    <div class="col-md-4">
+      <a href="{% url 'borrar_foto_novedad' imagen.novedad.id imagen.id %}"><i class="far fa-times-circle pull-right"></i></a>
+      <img src="{{imagen.foto_novedad.url}}" class="img-novedad"></img>
+    </div>
+    {% endfor %}
+  </div>
+  {% endif %}
+  <input class="btn bg-green pull-right" type="submit" value="Guardar">
+</form>
+</div>
+{% endblock %}

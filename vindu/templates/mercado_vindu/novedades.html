@@ -1,0 +1,42 @@
+{% extends 'base.html' %}
+{% load static rest_framework %}
+
+{% block extrahead %}
+{% endblock %}
+
+{% block content %}
+
+<div class="col-md-12 col-sm-12 col-xs-12">
+  <h3>
+    <a href="{% url 'agregar_novedad' %}" class="btn bg-green btn-small pull-right"><i class="fas fa-plus"></i> Nueva novedad</a>
+  </h3>
+</div>
+<div class="col-md-12">
+  <h2 class="title-section">NOVEDADES</h2>
+</div>
+<div>
+
+<div id="no-more-tables">
+  <table class="table table-sm table-responsive table-condensed cf">
+    <thead class="cf">
+      <tr>
+        <th>Fecha</th>
+        <th>Título</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for novedad in novedades %}
+      <tr>
+        <td data-title="Fecha">{{novedad.date_created|date:"d/m/Y"}}</td>
+        <td data-title="Título">{{novedad.titulo_novedad}}</td>
+        <td data-title="Acciones">
+          <a href="{% url 'modificar_novedad' novedad.id %}"><i class="far fa-edit"></i></a>
+          <a href="{% url 'borrar_novedad' pk=novedad.id var='borrar' %}"><i class="far fa-times-circle"></i></a>
+        </td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</div>
+
+{% endblock %}

@@ -1,0 +1,23 @@
+<div class="modal fade" id="talle_modal" tabindex="-1" role="dialog" aria-labelledby="TalleModal" aria-hidden="true">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title" id="talleModal">Modificar stock</h4>
+      </div>
+      <div class="modal-body">
+        <form id="talle_producto_form">
+          {% csrf_token %}
+          <div class="form-group">
+            <label>Sku</label>
+            <input type="text" class="form-control" id="shop_sku">
+          </div>
+          <div class="form-group">
+            <label>Stock</label>
+            <input type="text" class="form-control" id="stock">
+          </div>
+          <button type="button" id="submit" class="btn btn-primary">Guardar</a>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

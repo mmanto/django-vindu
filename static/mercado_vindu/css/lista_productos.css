@@ -1,0 +1,58 @@
+.column {
+    float: left;
+    width: 33.33%;
+    padding: 10px;
+    height: 380px; /* Should be removed. Only for demonstration */
+}
+
+.row:after {
+    content: "";
+    display: table;
+    clear: both;
+}
+
+.img-productos {
+  max-width:100%;
+  height:200px;
+  margin: 10px 0px 0px 0px;
+
+}
+
+.cuadros-detalle>span{
+	display:inline-block;
+	vertical-align:middle;
+	line-height:normal;
+    font-family:"DINPro_Bold";
+}
+
+.cuadros-detalle>span h1{
+    font-weight: bold;
+    color: #00aba1;
+}
+
+@media only screen and (max-width: 600px) {
+.product-title{
+    line-height: 1.5em;
+    height: 3em;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    font-size: 4vw;
+}
+
+.img-productos {
+  max-width:100%;
+  height:80px;
+
+}
+
+.precio-producto{
+    line-height: 1.5em;
+    height: 3em;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    font-size: 3.5vw;
+}
+
+}

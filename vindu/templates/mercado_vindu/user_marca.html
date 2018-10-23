@@ -1,0 +1,46 @@
+{% extends 'base.html' %}
+{% load static rest_framework %}
+
+{% block extrahead %}
+{% endblock %}
+
+{% block content %}
+
+<div class="row">
+{% if user_marca %}
+<h2 class="title-section">MODIFICAR USUARIO</h2>
+{% else %}
+<h2 class="title-section">AGREGAR USUARIO</h2>
+{% endif %}
+
+<form action="." id="form-local" class="form" method="POST" enctype="multipart/form-data">
+  {% csrf_token %}
+  <div class="col-md-12">
+    {% render_field serializer.username style=style %}
+  </div>
+  <div class="col-md-12">
+    {% render_field serializer.first_name style=style %}
+  </div>
+  <div class="col-md-12">
+    {% render_field serializer.last_name style=style %}
+  </div>
+  <div class="col-md-12">
+    {% render_field serializer.password style=style %}
+  </div>
+  <div class="col-md-12">
+    {% render_field serializer.email style=style %}
+  </div>
+  {% if user_marca %}
+    {% if user_marca.foto_avatar %}
+    <div class="col-md-4">
+      <img src="{{user_marca.foto_avatar.url}}" class="img-cuenta"></img>
+    </div>
+    {% endif %}
+  {% endif %}
+  <div class="col-md-12">
+    {% render_field serializer.foto_avatar style=style %}
+  </div>
+  <input class="btn bg-green pull-right" type="submit" value="Guardar">
+</form>
+</div>
+{% endblock %}

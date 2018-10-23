@@ -1,0 +1,516 @@
+{% load l10n %}
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+    <head>
+
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+        <title>Confirmación Compra</title>
+
+        
+
+    
+
+<style>
+
+@import url('https://fonts.googleapis.com/css?family=Ubuntu');
+
+@import url('https://fonts.googleapis.com/css?family=Roboto:900');
+
+body {
+
+margin: 0; padding: 0; min-width: 100% !important; background-color: #ffffff;
+
+}
+
+img {
+
+height: auto;
+
+}
+
+@media only screen and (min-device-width: 658px) {
+
+				.content {width: 657px !important;}
+
+			}
+
+</style></head>
+
+    <body yahoo="" bgcolor="#ffffff" style="min-width: 100% !important; margin: 0; padding: 0;">
+
+        <!--[if (mso)|(IE)]>
+
+			<table width="600" align="center" cellpadding="0" cellspacing="0" border="0">
+
+			    <tr>
+
+			        <td>
+
+			            <![endif]-->
+
+			                    <table class="content" align="center" cellpadding="0" cellspacing="0" border="0" style="width: 100%; max-width: 657px;">
+
+
+
+
+
+
+
+		                        	<!--  ENCABEZADO  -->
+
+			                        <tr>
+
+			                            <td class="header" bgcolor="#1da89d" style="padding: 0px 30px;">
+
+											<table align="left" border="0" cellpadding="0" cellspacing="0">
+
+											    <tr>
+
+											        <td height="70" style="padding: 10px 20px 10px 0;">
+
+											            <img src="http://vinduapp.com/img/logo-segui-tu-moda.png" width="300" height="80" border="0" alt="" style="height: auto;" />
+
+											        </td>
+
+											    </tr>
+
+											</table>
+
+										</td>
+
+			                        </tr>
+
+			                        <tr>
+
+			                        	<td style="border-top-width: 2px; border-top-color: #d8d8d8; border-top-style: solid; border-bottom-width: 2px; border-bottom-color: #efefef; border-bottom-style: solid;">
+
+			                        	</td>
+
+			                        </tr>
+
+			                        <!-- END ENCABEZADO  -->
+
+
+
+
+
+
+
+			                        <!-- TITULO  -->
+
+			                        <tr>
+
+									    <td class="innerpadding borderbottom" style="padding: 30px 60px 10px;">
+
+									        <table style="border-top-width: 1px; border-top-color: #1da89d; border-top-style: solid; border-bottom-width: 1px; border-bottom-color: #1da89d; border-bottom-style: solid; padding: 20px 0;" width="100%" border="0" cellspacing="0" cellpadding="0">
+
+									            <tr>
+
+					                				<td class="h2 " style="font-family: 'Roboto', sans-serif; font-weight: bold; font-size: 32px; line-height: 40px; color: #CA0088; padding: 0 0 0px 3px;">
+
+									                    ¡GRACIAS POR TU COMPRA!
+
+									                </td>
+
+									            </tr>
+
+									        </table>
+
+									    </td>
+
+									</tr>
+
+									<!-- END TITULO  -->
+
+
+									<!-- NRO PEDIDO  -->
+
+									<tr>
+
+						              <td class="" style="padding: 30px 60px 10px; font-size: 21px; line-height: 18px; color: #153643; font-family: 'Ubuntu', sans-serif;">
+
+						              	<p style="padding: 0px 0px 0px 260px; color: #1da89d; margin: 2px 0px;"><b>Pedido Nº: {{ pedido.pk|stringformat:"011d" }}</b></p>
+
+						                			<br />
+
+
+
+						              </td>
+
+						            </tr>
+
+						            <!-- FIN NRO PEDIDO  -->
+
+						            
+
+									<tr>
+
+									  <td class="innerpadding borderbottom" style="padding: 5px 60px 30px;">
+
+									    <!--[if (gte mso 9)|(IE)]>
+
+									      <table width="380" align="left" cellpadding="0" cellspacing="0" border="0">
+
+									        <tr>
+
+									          <td>
+
+									    <![endif]-->
+
+									          <table width="100%" border="0" cellspacing="0" cellpadding="0">
+
+
+									          	<!-- MENSAJE -->
+
+									            <tr>
+
+									              <td class="bodycopy" style="font-size: 16px; line-height: 22px; color: #153643; font-family: 'Ubuntu', sans-serif;">
+
+								                	<p style="margin: 2px 0px;">
+
+								                		Hola, {{pedido.usuario_comprador.first_name}}. 
+
+								                	</p>
+
+								                	<p style="margin: 2px 0px;">
+
+								                		Tu compra ha sido recibida con éxito y está siendo procesada. A continuación se detalla tu pedido.
+
+								                	</p>
+
+								                	<br />
+
+									              </td>
+
+									            </tr>
+
+									            <!-- END MENSAJE -->
+
+
+
+									            <!-- DIRECCION -->
+
+									            <tr>
+
+									              <td class="bodycopy" style="font-size: 16px; line-height: 22px; color: #153643; font-family: 'Ubuntu',  sans-serif;">
+
+								                	<p style="margin: 2px 0px;">
+
+								                		<b>Dirección de entrega:</b> 
+
+								                	</p>
+
+								                	<p style="margin: 2px 0px;">
+
+														<a href="" style="text-decoration:none;">{{ pedido.domicilio_envio.calle}}&nbsp;{{pedido.domicilio_envio.numero}}</a>
+														{% if pedido.domicilio_envio.piso %}
+														,Piso&nbsp;{{pedido.domicilio_envio.piso}}
+														{% endif %}
+														{% if pedido.domicilio_envio.departamento %}	
+														   Dto &nbsp;{{pedido.domicilio_envio.departamento}}		
+														{% endif %}
+														.&nbsp;<a href="" style="text-decoration:none;">{{pedido.domicilio_envio.localidad_ref.localidad }}&nbsp;{{pedido.domicilio_envio.cod_postal.cod_postal}}</a>											
+
+								                	</p>
+
+								                	<br />
+
+									              </td>
+
+									            </tr>
+
+									            <!-- FIN DIRECCION -->
+
+
+									            <!-- PRODUCTO -->
+
+									            <tr>
+
+									              <td class="bodycopy" style="font-size: 16px; line-height: 22px; color: #153643; font-family:  'Ubuntu', sans-serif;">
+
+									                	<table>
+															<tr>
+									                			<td width="500">
+									                				<p style="margin: 2px 0px;">
+
+																		<b>{% if lineas_pedido.count > 1 %}Productos:</b> %}
+																			{% else %}
+																			Producto:</b>
+																			{% endif %} 
+																		</p>
+																</td>																	
+															</tr>
+															{% for articulo in lineas_pedido %}
+															<tr>
+									                			<td width="500">
+													                	<p style="margin: 2px 0px;">
+
+													                		{{articulo.articulo.producto.nombre_producto}} - {{pedido.marca.nombre}}
+
+													                	</p>
+
+													                	<p style="margin: 2px 0px;">Talle: {{articulo.articulo.talle}}</p>
+
+													                	<p style="margin: 2px 0px;">Color: {{articulo.articulo.producto.color}}</p>
+
+													                	<p style="margin: 2px 0px;">Cod. de producto: {{articulo.articulo.producto.cod_producto|default_if_none:''}}</p>
+
+													                	<p style="margin: 2px 0px;">Cantidad: {{articulo.cantidad}}</p>
+
+																		<br />
+
+									                			</td>
+
+									                			<td width="120" height="160" style="padding: 0px; border: 1px solid #1da89d;">
+
+									                				<img src="http://{{ request.get_host }}{{ articulo.articulo.producto.foto_principal_thumb.url}}" width="100%" height="100%" style="height: auto;" />
+
+									                			</td>
+
+									                		</tr>
+															{% endfor %}
+									                	</table>
+
+									              </td>
+
+									            </tr>
+
+												<!-- FIN PRODUCTO -->
+
+
+									            <!-- INFORMACION DE TARJETA -->
+
+									            <tr>
+
+									              <td class="bodycopy" style="font-size: 16px; line-height: 22px; color: #153643; font-family:  'Ubuntu', sans-serif;">
+
+									                	<p style="margin: 2px 0px;">
+
+									                		<b>Forma de Pago:</b> 
+
+									                	</p>
+
+									                	<p style="margin: 2px 0px;">
+
+									                		{{payment_type}} {{payment_method}}
+
+									                	</p>
+
+									                	<p style="margin: 2px 0px;">{{pago.installments}}
+															{% if pago.installments > 1 %}Cuotas %}
+															{% else %}Cuota</p>
+															{% endif %}
+									                	<br />
+
+									              </td>
+
+									            </tr>
+
+									            <!-- FIN INFORMACION DE TARJETA -->
+
+									            <!-- INFORMACION DE PAGO -->
+
+									            <tr>
+
+									              <td class="bodycopy" style="font-size: 16px; line-height: 22px; color: #153643; font-family: 'Ubuntu',  sans-serif;">
+
+									                	<p style="margin: 2px 0px;">
+
+									                		<b>Precio:</b> 
+
+									                	</p>
+
+									                	<table>
+
+									                		<tr>
+
+									                			<td>
+
+									                				Subtotal:
+
+									                			</td>
+
+									                			<td>
+
+									                				${{pedido.importe_pedido|localize }}.-
+
+									                			</td>
+
+									                		</tr>
+
+															<tr>
+																
+																<td>
+
+																	Descuentos:
+
+																</td>
+
+																<td>
+
+																	${{pedido.importe_descuentos|localize }}.-
+
+																</td>
+
+															</tr>
+
+									                		<tr>
+
+									                			<td>
+
+									                				Costo de Envío:
+
+									                			</td>
+
+									                			<td>
+
+									                				${{pedido.cargo_costo_envio_comprador|localize }}.-
+
+									                			</td>
+
+									                		</tr>
+
+									                		<tr>
+
+									                			<td>
+
+									                				Total:
+
+									                			</td>
+
+									                			<td>
+
+									                				${{pedido.importe_total}}.-
+
+									                			</td>
+
+									                		</tr>
+
+									                	</table>
+
+									                	<br />
+
+									              </td>
+
+									            </tr>
+
+												<!-- FIN INFORMACION DE PAGO -->
+
+
+												<!-- ENTREGA -->
+
+									            <tr>
+
+									              <td class="bodycopy" style="font-size: 16px; line-height: 22px; color: #153643; font-family: 'Ubuntu',  sans-serif;">
+
+									                	<p style="margin: 2px 0px;">
+
+									                		<b>Entrega:</b> 
+
+									                	</p>
+
+									                	<p style="margin: 2px 0px;">
+
+									                		{{pedido.zona_tarifa.zona_tarifa.plazo_entrega}}.
+
+									                	</p>
+
+									                	<br />
+
+									              </td>
+
+									            </tr>
+
+												<!-- FIN ENTREGA -->
+
+												<!-- PIE DE PAGINA -->
+
+									            <tr>
+
+									              <td class="bodycopy" style="border-bottom-width: 2px; border-bottom-color: #1da89d; border-bottom-style: solid; font-size: 16px; line-height: 22px; color: #153643; font-family: 'Ubuntu',  sans-serif;">
+
+									                	<p style="margin: 2px 0px;">
+
+									                		Muchas gracias,
+
+									                		<br />
+
+									                		El equipo de Vindu 
+
+									                	</p>
+
+									                	<br />
+
+									                	<p style="margin: 2px 0px;">
+
+									                		Cualquier duda o consulta, por favor comunicate con nosotros enviándonos un mail a <span style="color: #1da89d;"><b>atencionalcliente@vinduapp.com</b></span>
+
+									                	</p>
+
+									                	<br />
+
+									              </td>
+
+									            </tr>
+												<tr>
+													
+													<td style="padding: 30px 30px 30px 30px">
+
+														<a href="http://vinduapp.com/">
+
+														<img src="http://vinduapp.com/img/icon-vindu.png " width="50" height="50"></a>
+
+
+														<a href="https://www.instagram.com/vinduapp/">
+
+														<img src="http://vinduapp.com/img/icon-vindu-2.png" width="50" height="50"></a>
+
+													</td>
+
+												</tr>
+								            	<!-- FIN PIE DE PAGINA -->
+
+
+									          </table>
+
+				    								<!--[if (gte mso 9)|(IE)]>
+
+				          						</td>
+
+				        					</tr>
+
+				    					</table>
+
+				    				<![endif]-->
+
+						  			</td>
+
+								</tr>
+
+								
+
+			</table>
+			
+										
+
+												
+																							  </table>
+												
+																							  <!-- END FOOTER  -->
+
+		<!--[if (mso)|(IE)]>
+
+				        </td>
+
+					    </tr>
+
+					</table>
+
+					<![endif]-->
+
+    </body>
+
+</html>

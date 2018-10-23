@@ -1,0 +1,157 @@
+{% load static i18n %}
+<!doctype html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="Diamo">
+    <link rel="icon" href="/static/images/favicon.png" type="image/png">
+    <title>{% block title %}Mercado Vindu{% endblock %}</title>
+
+    <link href="{% static 'base/css/bootstrap.min.css' %}" rel="stylesheet" type="text/css">
+    <link href="{% static 'base/css/styles.css' %}" rel="stylesheet" type="text/css">
+    <link href="https://getbootstrap.com/docs/3.3/examples/navbar-fixed-top/navbar-fixed-top.css" rel="stylesheet" type"text/css">
+    <link href="{% static 'base/css/no-more-tables.css' %}" rel="stylesheet" type="text/css">
+    <link href="{% static 'base/css/responsiveslides.css' %}" rel="stylesheet" type="text/css">
+    <style>
+    </style>
+    {% block extrahead %}
+	{% endblock extrahead %}
+</head>
+<body>
+  <nav class="navbar navbar-default navbar-fixed-top bg-green">
+    <div class="container">
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+          <span class="sr-only">Toggle navigation</span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <!--a class="navbar-brand" href="#">Project name</a-->
+      </div>
+      <div id="navbar" class="navbar-collapse collapse">
+        <ul class="nav navbar-nav">
+        </ul>
+        <ul class="nav navbar-nav navbar-center">
+        </ul>
+        <ul class="nav navbar-nav navbar-right">
+          <li class="nav-item">
+            <a href="#"><img src="{% static "base/img/icono_notificaciones.png" %}" class="iconos-navbar"></a>
+          </li>
+          <li class="nav-item">
+              <a href="#"><img src="{% static "base/img/icono_usuario.png" %}" class="iconos-navbar"></a>
+          </li>
+          <li class="nav-item">
+              <a href="#"><img src="{% static "base/img/icono_FAQ.png" %}" class="iconos-navbar"></a>
+          </li>
+          <li class="nav-item">
+              <a href="#"><img src="{% static "base/img/icono_mail.png" %}" class="iconos-navbar"></a>
+          </li>
+          <li class="nav-item">
+              <a href="{% url 'logout' %}"><img src="{% static "base/img/icono_sesion.png" %}" class="iconos-navbar"></a>
+          </li>
+        </ul>
+      </div><!--/.nav-collapse -->
+    </div>
+  </nav>
+  <div class="container-fluid" style="width:90%;">
+    <div class="row">
+      <div class="col-md-4 col-lg-4">
+        <img src="{% static "base/img/logo_vindu.png" %}" class="img-marca-header">
+      </div>
+      <div class="col-md-8 col-lg-8 pull-right">
+        {% if user.first_name %}
+        <h1 class="saludo-usuario pull-right">HOLA {{user.first_name|upper}}</h1>
+        {% else %}
+        <h1 class="saludo-usuario pull-right">HOLA {{user.username|upper}}</h1>
+        {% endif %}
+      </div>
+        <div class="col-md-8 col-lg-8 pull-right">
+        <a class="btn bg-green btn-small btn-header pull-right" href="{% url 'logout' %}">Cerrar sesión</a>
+        </div>
+    </div>
+    <div class="row">
+      <hr class="line-header">
+    </div>
+  </div>
+  <div class="container-fluid bg-white" style="width:90%;">
+    <div class="col-md-3 menu">
+      <h3 class="left-column-title">MI CUENTA</h3>
+      {% if user.usermarca.marca.logo %}
+      <img src="{{user.usermarca.marca.logo.url}}" class="img-cuenta">
+      {% else %}
+      <img src="{% static "base/img/sin_imagen_disponible.jpg" %}" class="img-cuenta">
+      {% endif %}
+      <div class="col-md-12 col-sm-12 col-xs-12">
+
+        <a href={% url 'dashboard_pedidos' %}>
+          <h3><img src="{% static "base/img/icono_dashboard.png" %}" class="iconos-menu"><span class="dashboard-titles"> DASHBOARD PEDIDOS</span></h3>
+        </a>
+        </div>
+        <div class="col-md-12 col-sm-12 col-xs-12 div-menu">
+        <a href="{% url 'datos_marca' %}">
+          <h3><img src="{% static "base/img/icono_datos_marca.png" %}" class="iconos-menu"><span class="dashboard-titles"> DATOS MARCA</span></h3>
+        </a>
+        </div>
+        <div class="col-md-12 col-sm-12 col-xs-12 div-menu">
+        <a href="{% url 'lista_de_productos' %}">
+        <h3><img src="{% static "base/img/icono_lista_prod.png" %}" class="iconos-menu"><span class="dashboard-titles"> LISTA DE PRODUCTOS</span></h3>
+        </a>
+        </div>
+        <div class="col-md-12 col-sm-12 col-xs-12 div-menu">
+        <a href="{% url 'stock' %}">
+        <h3><img src="{% static "base/img/icono_stock.png" %}" class="iconos-menu"><span class="dashboard-titles"> STOCK</span></h3></a>
+        </div>
+        <div class="col-md-12 col-sm-12 col-xs-12 div-menu">
+        <a href="{% url 'posteos' %}">
+        <h3><img src="{% static "base/img/icono_publicaciones.png" %}" class="iconos-menu"><span class="dashboard-titles"> PUBLICACIONES / POSTEOS</span></h3>
+        </a>
+        </div>
+        <div class="col-md-12 col-sm-12 col-xs-12 div-menu">
+        <a href="{% url 'locales' %}">
+        <h3><img src="{% static "base/img/icono_locales.png" %}" class="iconos-menu"><span class="dashboard-titles"> LOCALES</span></h3>
+        </a>
+        </div>
+        <div class="col-md-12 col-sm-12 col-xs-12 div-menu">
+        <a href="{% url 'novedades' %}">
+        <h3><img src="{% static "base/img/icono_novedades.png" %}" class="iconos-menu"><span class="dashboard-titles"> NOVEDADES</span></h3>
+        </a>
+        </div>
+        <div class="col-md-12 col-sm-12 col-xs-12 div-menu">
+        <a href="#">
+        <h3><img src="{% static "base/img/icono_calificaciones.png" %}" class="iconos-menu"><span class="dashboard-titles"> CALIFICACIONES</span></h3>
+        </a>
+        </div>
+        <div class="col-md-12 col-sm-12 col-xs-12 div-menu">
+        <a href="#">
+        <h3><img src="{% static "base/img/icono_reportes.png" %}" class="iconos-menu"><span class="dashboard-titles"> REPORTES</span></h3>
+        </a>
+        </div>
+        <div class="col-md-12 col-sm-12 col-xs-12 div-menu">
+        <a href="#">
+        <h3><img src="{% static "base/img/icono_facturas.png" %}" class="iconos-menu"><span class="dashboard-titles"> FACTURAS VINDU</span></h3>
+        </a>
+        </div>
+    </div>
+
+    <div class="col-md-9 col-xs-12 col-sm-12 menu">
+      {% block content %}
+      {% endblock %}
+    </div>
+  </div>
+
+</body>
+<script defer src="https://use.fontawesome.com/releases/v5.0.13/js/all.js" integrity="sha384-xymdQtn1n3lH2wcu0qhcdaOpQwyoarkgLVxC/wZ5q7h9gHtxICrpcaSUfygqZGOe" crossorigin="anonymous"></script>
+<script src="{% static 'base/js/jquery-3.3.1.min.js' %}"></script>
+<script src="{% static 'base/js/bootstrap.min.js' %}"></script>
+<script src="{% static 'base/js/responsiveslides.min.js' %}"></script>
+<script src="{% static 'base/js/uploadmultifiles.js' %}"></script>
+<script src="{% static 'base/js/panel-accordion.js' %}"></script>
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB-tN51aIBwklIr0fvLBjLRj749PLgHs4Q"></script>
+<script src="{% static 'base/js/gmaps.js' %}"></script>
+{% block extrascript %}
+{% endblock extrascript %}
+</html>

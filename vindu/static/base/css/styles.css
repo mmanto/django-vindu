@@ -1,0 +1,213 @@
+/*********BebasNeue*************/
+@font-face {
+  font-family: "DINPro_Light";
+  font-style: normal;
+  font-weight: 100;
+  src: url("../fonts/BebasNeue-Light.otf"); }
+@font-face {
+  font-family: "DINPro_Regular";
+  font-style: normal;
+  font-weight: 200;
+  src: url("../fonts/DINPro-Regular.otf"); }
+@font-face {
+  font-family: "DINPro_Medium";
+  font-style: normal;
+  font-weight: 400;
+  src: url("../fonts/DINPro-Medium.otf"); }
+@font-face {
+  font-family: "DINPro_Bold";
+  font-style: normal;
+  font-weight: 700;
+  src: url("../fonts/DINPro-Bold.otf"); }
+@font-face {
+  font-family: "DINPro_Black";
+  font-style: normal;
+  font-weight: 900;
+  src: url("../fonts/DINPro-Black.otf"); }
+
+body {
+    background-color: #f0f0f1;
+    font-family: "DINPro_Regular";
+}
+
+.bg-green {
+    background-color: #009a95;
+    color: #FFF!important;
+}
+
+.bg-white {
+    background-color: #FFF;
+}
+
+.header_logo {
+    width: 23px;
+    height: 23px;
+}
+
+.fa-icon {
+    margin: 10px 0px 0px 20px!important;
+}
+
+a {
+    color: #000!important;
+    text-decoration: none!important;
+}
+
+a:hover{
+    text-decoration: none!important;
+}
+
+a h4 {
+    color: #FFF!important;
+    text-decoration: none!important;
+}
+
+.navbar a {
+    color: #FFF!important;
+}
+
+.navbar-right {
+  margin-right: -9%;
+}
+
+.img-marca-header {
+    max-height: 300px;
+    max-width: 300px;
+}
+
+.iconos-menu {
+    max-width: 30px;
+}
+
+.iconos-navbar {
+    max-width: 25px!important;
+}
+
+.navbar-nav > li > a {
+    padding-top: 10px!important;
+    padding-bottom: 10px!important;
+}
+
+.saludo-usuario {
+    font-size: 4em;
+    margin-top: 15px;
+    font-weight: bold;
+    font-family: "DINPro_Medium";
+}
+
+.line-header{
+    margin: 30px 0px 55px 0px;
+    border: 0;
+    height: 2px;
+    background-image: linear-gradient(to right, rgba(0, 0, 0, 0), rgba(189,189,189,1), rgba(0, 0, 0, 0));
+  }
+
+
+.left-column-title {
+    color: #f1338d;
+    font-size: 30px;
+    font-weight: bold;
+    font-family: "DINPro_Medium";
+    margin-bottom: 25px;
+}
+
+.img-cuenta {
+    height: 120px;
+    max-width: 250px;
+}
+
+.dashboard-titles {
+    color: #f1338d;
+    font-weight: bold;
+    font-family: "DINPro_Regular";
+    margin-left: 10px;
+    line-height: 1.5em;
+    height: 3em;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    width: 100%;
+    font-size: 12px;
+    }
+
+.div-menu {
+    margin-top:-10px;!important
+}
+
+.btn:hover{
+    color: #FFF;
+}
+
+.btn {
+    margin: 10px 10px 10px 10px;
+}
+
+.btn-header {
+    margin: 0px 0px 0px 0px!important;
+}
+
+.navbar-header .icon-bar {
+    background-color: #ddd!important;
+}
+
+.title-section {
+    font-family:"DINPro_Bold";
+    font-weight: bold;
+    color: #00aba1;
+}
+
+.avatar-img {
+    height:40px;
+    width:40px;
+    border-radius:50%
+}
+
+
+
+@media only screen and (max-width: 600px) {
+.dashboard-titles {
+    color: #f1338d;
+    font-weight: bold;
+    font-family: "DINPro_Regular";
+    margin-left: 10px;
+    line-height: 1.5em;
+    height: 3em;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    width: 100%;
+    font-size: 3vw;
+}
+
+.left-column-title {
+    color: #f1338d;
+    font-size: 9vw;
+    font-weight: bold;
+    font-family: "DINPro_Medium";
+}
+
+.saludo-usuario {
+    font-size: 7vw;
+    margin-top: 15px;
+    font-weight: bold;
+    font-family: "DINPro_Black";
+    line-height: 1.5em;
+    height: 3em;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    width: 100%;
+}
+
+.iconos-menu {
+    max-width: 25px;
+}
+
+.title-section {
+    line-height: 1.5em;
+    font-size: 8vw;
+    text-overflow: ellipsis;
+    text-align: center;
+}
+
+}

@@ -1,0 +1,143 @@
+{% extends 'base.html' %}
+{% load static rest_framework %}
+
+{% block extrahead %}
+    <link href="{% static 'mercado_vindu/css/producto.css' %}" rel="stylesheet" type="text/css">
+{% endblock %}
+
+{% block extrascript %}
+{% endblock %}
+
+{% block content %}
+
+<div class="row">
+{% if producto %}
+<h2 class="title-section">MODIFICAR PRODUCTO</h2>
+<a href="{% url 'copiar_producto' pk=producto.id %}" class="btn bg-green btn-small pull-right" title="Copiar producto"><i class="fas fa-plus"></i> Replicar info</a>
+{% else %}
+<h2 class="title-section">AGREGAR PRODUCTO</h2>
+{% endif %}
+
+<form action="." id="form-producto" class="form" method="POST" enctype="multipart/form-data">
+  {% csrf_token %}
+  <div class="col-md-12">
+    {% render_field serializer.nombre_producto style=style %}
+  </div>
+  <div class="col-md-12">
+    {% render_field serializer.cod_producto style=style %}
+  </div>
+  <div class="col-md-12">
+    {% render_field serializer.descripcion style=style %}
+  </div>
+  <div class="col-md-12">
+    {% render_field serializer.categoria style=style %}
+  </div>
+  <div class="col-md-12">
+    {% render_field serializer.precio style=style %}
+  </div>
+  <div class="col-md-12">
+    {% render_field serializer.porc_descuento style=style %}
+  </div>
+  {% if producto %}
+  <div class="col-md-12">
+    <div class="col-md-4">
+      <img src="{{producto.foto_principal.url}}" class="img-producto"></img>
+    </div>
+    <div class="col-md-8">
+      {% render_field serializer.foto_principal style=style %}
+    </div>
+  </div>
+  {% else %}
+  <div class="col-md-12">
+    {% render_field serializer.foto_principal style=style %}
+  </div>
+  {% endif %}
+  <div class="col-md-12">
+    {% render_field serializer.color style=style %}
+  </div>
+
+  <div class="col-md-12">
+    <a class="box" id="box" align="center" data-toggle="collapse" href="#otras_fotos">
+      <h4 class="box-title">OTRAS FOTOS <i class="fas fa-angle-down"></i></h4>
+    </a>
+    <div id="otras_fotos" class="collapse">
+      <label for="files">Seleccionar fotos</label>
+      <input id="files" type="file" name="otras_fotos" multiple/>
+      <output id="result" />
+      {% if producto%}
+      <div class="col-md-12 col-lg-12 otras-fotos">
+        {% if producto.foto_rel_producto.all %}
+          {% for ofp in  producto.foto_rel_producto.all %}
+          <div class="col-md-4 col-lg-4">
+            <img src="{{ofp.foto_producto.url}}" class="img-producto"></img>
+          </div>
+          {% endfor %}
+        {% endif %}
+      </div>
+      {% endif %}
+      <label for="files">Seleccionar fotos 360</label>
+      <input id="files" type="file" name="fotos_360" multiple/>
+      <output id="result" />
+      {% if producto%}
+      <div class="col-md-12 col-lg-12 otras-fotos">
+        {% if producto.foto_rel_producto.all %}
+          {% for ofp in  producto.foto360_rel_producto.all %}
+          <div class="col-md-6 col-lg-6">
+            <img src="{{ofp.foto360_producto.url}}" class="img-producto"></img>
+          </div>
+          {% endfor %}
+        {% endif %}
+      </div>
+      {% endif %}
+    </div>
+  </div>
+  <input class="btn bg-green pull-right" type="submit" value="Guardar">
+</form>
+</div>
+
+{% if producto %}
+<div class="col-md-12"><hr></div>
+<div class="row">
+  <h3>Combina con</h3>
+  <a href="{% url 'combinacion_producto' producto.id %}" class="btn bg-green btn-small pull-right">Combinar con otro producto</a>
+  <div class="col-md-12 col-sm-12 col-xs-12">
+    {% for producto in producto.get_combinaciones %}
+    <div class="col-md-6 col-sm-12 col-xs-12">
+      <div class="col-md-6 col-lg-6 col-sm-12 col-xs-12">
+        <img src="{{producto.foto_principal.url}}" class="img-producto"></img>
+        <b>{{ producto.nombre_producto }}</b>
+      </div>
+    </div>
+    {% endfor %}
+  </div>
+</div>
+  
+<div class="col-md-12"><hr></div>
+<div class="row">
+  <h3>Stock</h3>
+  <a href="{% url 'agregar_talle_producto' producto.id 'producto' %}" class="btn bg-green btn-small pull-right">Agregar talle</a>
+  <div class="col-md-12">
+    <div id="no-more-tables">
+      <table class="table table-sm table-responsive table-condensed cf">
+        <thead class="cf">
+          <tr>
+            <th>Talle</th>
+            <th>Stock</th>
+            <th>ShopSku</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for stock in producto.get_stock %}
+          <tr>
+            <td data-title="Talle">{{stock.talle}}</td>
+            <td data-title="Stock">{{stock.stock}}</td>
+            <td data-title="ShopSku">{{stock.shop_sku}}</td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+{% endif %}
+{% endblock %}

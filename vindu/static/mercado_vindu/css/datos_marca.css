@@ -1,0 +1,14 @@
+a h4 {
+    color:#009a95!important;
+}
+
+.img-marca {
+  max-width:100%;
+  height:200px;
+}
+
+@media only screen and (max-width: 600px) {
+.box-title {
+   font-size: 4vw;
+}
+}

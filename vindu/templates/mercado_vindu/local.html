@@ -1,0 +1,62 @@
+{% extends 'base.html' %}
+{% load static rest_framework %}
+
+{% block extrahead %}
+    <link href="{% static 'mercado_vindu/css/local.css' %}" rel="stylesheet" type="text/css">
+{% endblock %}
+
+{% block extrascript %}
+  <script src="{% static 'mercado_vindu/js/map.js' %}"></script>
+{% endblock %}
+
+{% block content %}
+
+<div class="row">
+{% if local %}
+<h2 class="title-section">MODIFICAR LOCAL</h2>
+{% else %}
+<h2 class="title-section">AGREGAR LOCAL</h2>
+{% endif %}
+
+<form action="." id="form-local" class="form" method="POST" enctype="multipart/form-data">
+  {% csrf_token %}
+
+  <div class="col-md-6">
+    <div class="col-md-12">
+      {% render_field serializer.nombre_local style=style %}
+    </div>
+    <div class="col-md-12">
+      {% render_field serializer.direccion style=style %}
+    </div>
+    <div class="col-md-12">
+      {% render_field serializer.ciudad style=style %}
+    </div>
+    <div class="col-md-12">
+      {% render_field serializer.telefono style=style %}
+    </div>
+    <div class="col-md-12">
+      {% render_field serializer.horario style=style %}
+    </div>
+  </div>
+  <div class="col-md-6">
+    <div id="local_map"></div>
+  </div>
+  <div class="col-md-12">
+    {% render_field imagen_serializer.foto_local style=style %}
+  </div>
+  {% if local.fotolocal_set.all %}
+    <div class="col-md-12">
+      {% for imagen in local.fotolocal_set.all %}
+      <div class="col-md-4">
+        <a href="{% url 'borrar_foto_local' imagen.local.id imagen.id %}"><i class="far fa-times-circle pull-right"></i></a>
+        <img src="{{imagen.foto_local.url}}" class="img-local"></img>
+      </div>
+      {% endfor %}
+    </div>
+  {% endif %}
+
+  <input class="btn bg-green pull-right" type="submit" value="Guardar">
+</form>
+</div>
+{% endblock %}
+

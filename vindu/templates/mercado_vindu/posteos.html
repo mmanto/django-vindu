@@ -1,0 +1,56 @@
+{% extends 'base.html' %}
+{% load static rest_framework %}
+
+{% block extrahead %}
+    <link href="{% static 'mercado_vindu/css/posteos.css' %}" rel="stylesheet" type="text/css">
+{% endblock %}
+
+{% block content %}
+
+<div class="col-md-12 col-sm-12 col-xs-12">
+  <h3>
+    <div class="btn bg-green btn-small pull-right">Publica</div>
+    <a href="{% url 'agregar_posteo' %}" class="btn bg-green btn-small pull-right"><i class="fas fa-plus"></i> Nuevo posteo</a>
+  </h3>
+</div>
+<div class="col-md-12">
+  <h2 class="title-section">PUBLICACIONES / POSTEOS</h2>
+</div>
+<div>
+  {% for posteo in posteos %}
+
+    <div class="col-lg-4 col-md-4 col-xs-6 col-sm-6 posteos">
+      <a href="{% url 'modificar_posteo' posteo.id %}">
+      <center>
+        <ul class="rslides">
+        {% for img in posteo.imagen_post.all %}
+        <li><img src="{{img.imagen_post.url}}" alt="" class="img-post"></img></li>
+        {% endfor %}
+        </ul>
+        <p class="post-description">{{posteo.descripcion}}</p>
+      </center>
+      </a>
+    </div>
+  {% endfor %}
+</div>
+
+</form>
+
+{% endblock %}
+{% block extrascript%}
+<script>
+  $(function() {
+    $(".rslides").responsiveSlides({
+    auto: false,
+    pager: false,
+    nav: true,
+    speed: 500,
+    namespace: "callbacks",
+    before: function () {
+    },
+    after: function () {
+    }
+    });
+  });
+</script>
+{% endblock %}

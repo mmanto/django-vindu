@@ -1,0 +1,46 @@
+[
+{
+    "model": "configuraciones.tarifazonaenvio",
+    "pk": 0,
+    "fields": {
+        "nombre_zona": "AMB",
+        "tarifa_hasta_1": "150.00",
+        "tarifa_hasta_3": "150.00",
+        "tarifa_hasta_5": "180.00",
+        "tarifa_hasta_10": "200.00"
+    }
+},
+{
+    "model": "configuraciones.tarifazonaenvio",
+    "pk": 1,
+    "fields": {
+        "nombre_zona": "CABECERAS",
+        "tarifa_hasta_1": "190.00",
+        "tarifa_hasta_3": "190.00",
+        "tarifa_hasta_5": "220.00",
+        "tarifa_hasta_10": "320.00"
+    }
+},
+{
+    "model": "configuraciones.tarifazonaenvio",
+    "pk": 2,
+    "fields": {
+        "nombre_zona": "RESTO DEL PA\u00cdS",
+        "tarifa_hasta_1": "230.00",
+        "tarifa_hasta_3": "230.00",
+        "tarifa_hasta_5": "280.00",
+        "tarifa_hasta_10": "400.00"
+    }
+},
+{
+    "model": "configuraciones.tarifazonaenvio",
+    "pk": 3,
+    "fields": {
+        "nombre_zona": "T. DEL FUEGO",
+        "tarifa_hasta_1": "420.00",
+        "tarifa_hasta_3": "420.00",
+        "tarifa_hasta_5": "580.00",
+        "tarifa_hasta_10": "660.00"
+    }
+}
+]

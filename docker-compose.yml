@@ -1,0 +1,20 @@
+version: '2'
+services:
+  db:
+    image: postgres:10
+    environment:
+      POSTGRES_USER: "vindu_postgres"
+      POSTGRES_PASSWORD: "anting2018"
+      POSTGRES_DB: "vindu_postgres"
+    ports:
+      - "7432:5432"
+
+  web:
+    build: .
+    command: python manage.py runserver 0.0.0.0:8000
+    volumes:
+      - .:/code
+    ports:
+      - "8000:8000"
+    depends_on:
+      - db

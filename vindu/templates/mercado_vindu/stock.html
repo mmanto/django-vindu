@@ -1,0 +1,53 @@
+{% extends 'base.html' %}
+{% load static rest_framework %}
+
+{% block extrahead %}
+  <link href="{% static 'mercado_vindu/css/lista_productos.css' %}" rel="stylesheet" type="text/css">
+{% endblock %}
+
+{% block extrascript %}
+  <script src="{% static 'mercado_vindu/js/stock.js' %}"></script>
+{% endblock %}
+
+{% block content %}
+
+<div class="col-md-12 col-sm-12 col-xs-12">
+  <h3>
+    <div class="btn bg-green btn-small pull-right">Cargar CSV <i class="fas fa-upload"></i></div>
+    <div class="btn bg-green btn-small pull-right">Descargar CSV <i class="fas fa-download"></i></div>
+  </h3>
+</div>
+<div class="col-md-12">
+  <h2 class="title-section">STOCK</h2>
+</div>
+
+{% for producto in productos %}
+<div id="no-more-tables">
+<table class="table table-sm table-responsive table-condensed cf">
+  <thead class="cf">
+    <tr>
+      <th>Código Producto</th>
+      <th>Producto</th>
+      <th>Color</th>
+      {% for pst in producto.get_stock %}
+      <th>{{pst.talle}}</th>
+      {% endfor %}
+    </tr>
+  </thead>
+  <tbody>
+  <tr>
+    <td data-title="Cod." class="col-md-2 col-lg-2">{{producto.cod_producto}}</td>
+    <td data-title="Producto" class="col-md-3 col-lg-3">{{producto.nombre_producto}}</td>
+    <td data-title="Color" class="col-md-2 col-lg-2">{{producto.color}}</td>
+    {% for pst in producto.get_stock %}
+    <td data-title="{{pst.talle}}"><a href="#" class="modificar_stock_{{pst.id}}" data-id="{{ pst.id }}" onclick="modalTalle('{{pst.id}}', '{{pst.shop_sku|default:'0'}}', '{{pst.stock}}')" title="Modificar stock"><span id="modificar-stock-{{pst.id}}">{{pst.stock}}</span></a></td>
+    {% endfor %}
+  </tr>
+  </tbody>
+</table>
+</div>
+{% endfor %}
+
+{% include "mercado_vindu/_modal_talle_producto.html" %}
+
+{% endblock %}

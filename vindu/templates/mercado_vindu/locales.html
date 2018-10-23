@@ -1,0 +1,44 @@
+{% extends 'base.html' %}
+{% load static rest_framework %}
+
+{% block extrahead %}
+{% endblock %}
+
+{% block content %}
+
+<div class="col-md-12 col-sm-12 col-xs-12">
+  <h3>
+    <a href="{% url 'agregar_local' %}" class="btn bg-green btn-small pull-right"><i class="fas fa-plus"></i> Nueva sucursal</a>
+  </h3>
+</div>
+<div class="col-md-12">
+  <h2 class="title-section">LOCALES</h2>
+</div>
+<div>
+
+<div id="no-more-tables">
+  <table class="table table-sm table-responsive table-condensed cf">
+    <thead class="cf">
+      <tr>
+        <th>Sucursal</th>
+        <th>Dirección</th>
+        <th>Horarios</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for local in locales %}
+      <tr>
+        <td data-title="Sucursal">{{local.nombre_local}}</td>
+        <td data-title="Direccion">{{local.direccion}}</td>
+        <td data-title="Horario">{{local.horario}}</td>
+        <td data-title="Acciones">
+          <a href="{% url 'modificar_local' local.id %}"><i class="far fa-edit"></i></a>
+          <a href="{% url 'borrar_local' pk=local.id var='borrar' %}"><i class="far fa-times-circle"></i></a>
+        </td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</div>
+
+{% endblock %}

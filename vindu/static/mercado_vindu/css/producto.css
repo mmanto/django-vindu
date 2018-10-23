@@ -1,0 +1,25 @@
+.img-producto {
+  max-width:100%;
+  height:200px;
+}
+
+.box {
+    width:100%;
+	border: 1px solid #009a95;
+	text-align: center;
+    margin: 0px 10px 20px 0px;
+    line-height: 1.5em;
+    height: 3em;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    display: block;
+}
+
+a h4 {
+    color:#009a95!important;
+}
+
+.otras-fotos{
+    margin: 10px 10px 10px 10px;
+}

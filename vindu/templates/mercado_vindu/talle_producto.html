@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+{% load static rest_framework %}
+
+{% block extrahead %}
+    <link href="{% static 'mercado_vindu/css/producto.css' %}" rel="stylesheet" type="text/css">
+{% endblock %}
+
+{% block content %}
+
+<div class="row">
+{% if talle_producto %}
+<h2 class="title-section">MODIFICAR TALLE PRODUCTO</h2>
+{% else %}
+<h2 class="title-section">AGREGAR TALLE PRODUCTO</h2>
+{% endif %}
+
+<form action="." id="form-producto" class="form" method="POST" enctype="multipart/form-data">
+  {% csrf_token %}
+  <div class="col-md-12">
+    {% render_field serializer.talle style=style %}
+  </div>
+  <div class="col-md-12">
+    {% render_field serializer.shop_sku style=style %}
+  </div>
+  <div class="col-md-12">
+    {% render_field serializer.stock style=style %}
+  </div>
+  <input class="hidden" name="var" value="{{ var }}">
+  <input class="btn bg-green pull-right" type="submit" value="Guardar">
+</form>
+</div>
+{% endblock %}

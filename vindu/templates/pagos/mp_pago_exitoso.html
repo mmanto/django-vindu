@@ -1,0 +1,23 @@
+{% extends "admin/base.html" %}
+{% block title %}Pago exitoso{% endblock %}
+{% block content %}
+{% include 'sombra.html' %}
+<div class="container">
+  <div class="row">
+    <div class="col-md-12 text-center">
+       	<br><br>
+        <h1>Pago Exitoso.</h1>
+            <h2>Listo ! Muchas gracias por comprar por medio de Vindu, se acreditó tu pago!</h2><br>
+            {% if pedido %}
+              <h2>En tu resumen de la tarjeta de crédito<br> verás el cargo de $ {{transaction_amount}} como {{statement_descriptor}}.</h2>
+              <br>
+              <h5>TU COMPRA</h5>
+              <h5>Medio de pago: {{ pedido.marca.proveedor_pago }}<h5>
+              <h5>Precio: $ {{ pedido.importe_total }}<h5>
+              <h5>Productos: {{ pedido.productos }}<h5>
+           {% endif %}
+        <br><br>
+      </div>
+    </div>
+</div>
+{% endblock content %}

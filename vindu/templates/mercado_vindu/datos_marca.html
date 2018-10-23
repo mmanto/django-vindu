@@ -1,0 +1,177 @@
+{% extends 'base.html' %}
+{% load static rest_framework %}
+
+{% block extrahead %}
+    <link href="{% static 'mercado_vindu/css/datos_marca.css' %}" rel="stylesheet" type="text/css">
+{% endblock %}
+
+{% block content %}
+
+<h2 class="title-section">DATOS MARCA</h2>
+
+<form action="{% url 'datos_marca' %}" id="form-datos-marca" class="form" method="POST" enctype="multipart/form-data">
+  {% csrf_token %}
+  <div class="row">
+  <div class="panel-group" id="accordion">
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <h4 class="panel-title">
+        <a align="center" data-parent="#accordion" data-toggle="collapse" href="#datos-marca">
+        <h4 class="box-title">DATOS MARCA <i class="fas fa-sort-up pull-right"></i></h4>
+        </a>
+      </div>
+      <div id="datos-marca" class="panel-collapse collapse in">
+        <div class="panel-body">
+          <div class="col-md-12">
+          {% render_field serializer.nombre style=style %}
+          </div>
+          {% if marca.logo %}
+            <div class="col-md-4">
+              <img src="{{marca.logo.url}}" class="img-marca"></img>
+            </div>
+          {% endif %}
+          <div class="col-md-12">
+          {% render_field serializer.logo style=style %}
+          </div>
+          {% if marca.logo_cuadrado %}
+            <div class="col-md-4">
+              <img src="{{marca.logo_cuadrado.url}}" class="img-marca"></img>
+            </div>
+          {% endif %}
+          <div class="col-md-12">
+          {% render_field serializer.logo_cuadrado style=style %}
+          </div>
+          <div class="col-md-12">
+          {% render_field serializer.razon_social style=style %}
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="panel-group" id="accordion">
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <h4 class="panel-title">
+        <a align="center" data-parent="#accordion" data-toggle="collapse" href="#datos-fiscales">
+        <h4 class="box-title">DATOS FISCALES E IMPOSITIVOS <i class="fas fa-sort-down pull-right"></i></h4>
+        </a>
+      </div>
+      <div id="datos-fiscales" class="collapse">
+        <div class="panel-body">
+          <div class="col-md-12">
+          {% render_field serializer.domicilio_fiscal style=style %}
+          </div>
+          <div class="col-md-12">
+          {% render_field serializer.cuit_nro style=style %}
+          </div>
+          <div class="col-md-12">
+          {% render_field serializer.condicion_iva style=style %}
+          </div>
+          <div class="col-md-4">
+            <label>Agente retencion de</label>
+          </div>
+          <div class="col-md-8">
+          {% render_field serializer.agente_ret_ib style=style %}
+          </div>
+          <div class="col-md-8 col-md-offset-4">
+          {% render_field serializer.agente_ret_gan style=style %}
+          </div>
+          <div class="col-md-8 col-md-offset-4">
+          {% render_field serializer.agente_ret_iva style=style %}
+          </div>
+          <div class="col-md-12 col-lg-12">
+          {% render_field serializer.responsable_ventas style=style %}
+          </div>
+          <div class="col-md-12 col-lg-12">
+          {% render_field serializer.responsable_cobranzas style=style %}
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="panel-group" id="accordion">
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <h4 class="panel-title">
+        <a align="center" data-parent="#accordion" data-toggle="collapse" href="#datos-otros">
+          <h4 class="box-title">OTROS DATOS <i class="fas fa-sort-down pull-right"></i></h4>
+        </a>
+      </div>
+      <div id="datos-otros" class="collapse">
+        <div class="panel-body">
+          <div class="col-md-12 col-lg-12">
+          {% render_field serializer.mail_contacto style=style %}
+          </div>
+          <div class="col-md-12 col-lg-12">
+          {% render_field serializer.provincia style=style %}
+          </div>
+          <div class="col-md-9 col-lg-9">
+          {% render_field serializer.localidad style=style %}
+          </div>
+          <div class="col-md-3 col-lg-3">
+          {% render_field serializer.codigo_postal style=style %}
+          </div>
+          <div class="col-md-12 col-lg-12">
+          {% render_field serializer.telefono_contacto style=style %}
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="panel-group" id="accordion">
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <h4 class="panel-title">
+        <a align="center" data-parent="#accordion" data-toggle="collapse" href="#datos-bancarios">
+          <h4 class="box-title">DATOS BANCARIOS <i class="fas fa-sort-down pull-right"></i></h4>
+        </a>
+      </div>
+      <div id="datos-bancarios" class="collapse">
+        <div class="panel-body">
+          <div class="col-md-12 col-lg-12">
+          {% render_field serializer.nro_cuenta style=style %}
+          </div>
+          <div class="col-md-12 col-lg-12">
+          {% render_field serializer.cbu style=style %}
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+  <input class="btn bg-green pull-right" type="submit" value="Guardar">
+  </div>
+</form>
+
+<div class="col-md-12">
+<h3>Otros usuarios de la marca</h3>
+<div id="no-more-tables">
+  <table class="table table-sm table-responsive table-condensed cf">
+    <thead class="cf">
+      <tr>
+        <th>Foto Avatar</th>
+        <th>Usuario</th>
+        <th>Nombre</th>
+        <th>Apellido</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for um in users_marca %}
+      <tr>
+        <td data-title="Avatar">{% if um.foto_avatar %}<img src="{{um.foto_avatar.url}}" class="avatar-img"></img>{% endif %}</td>
+        <td data-title="Usuario">{{um}}</td>
+        <td data-title="Nombre">{{um.first_name}}</td>
+        <td data-title="Apellido">{{um.last_name}}</td>
+        <td data-title="Acciones"><a href="{% url 'modificar_usermarca' um.id %}"><i class="far fa-edit"></i></a></td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</div>
+<a href="{% url 'agregar_usermarca' %}" class="btn bg-green btn-small pull-right" title="Copiar producto"><i class="fas fa-plus"></i> Agregar usuario</a>
+</div>
+
+{% endblock %}

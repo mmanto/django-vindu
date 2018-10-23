@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+{% load static rest_framework %}
+
+{% block extrahead %}
+    <link href="{% static 'mercado_vindu/css/producto.css' %}" rel="stylesheet" type="text/css">
+{% endblock %}
+
+{% block content %}
+
+<h2 class="title-section">AGREGAR COMBINACIÓN DE PRODUCTO {{ producto }}</h2>
+
+<form action="." id="form-producto" class="form" method="POST" enctype="multipart/form-data">
+    {% csrf_token %}
+    <div class="col-md-12">
+    {% render_field serializer.nombre_producto style=style %}
+    </div>
+    <div class="col-md-12">
+    {% render_field serializer.cod_producto style=style %}
+    </div>
+    <div class="col-md-12">
+    {% render_field serializer.descripcion style=style %}
+    </div>
+    <div class="col-md-12">
+    {% render_field serializer.categoria style=style %}
+    </div>
+    <div class="col-md-12">
+    {% render_field serializer.precio style=style %}
+    </div>
+    <div class="col-md-12">
+    {% render_field serializer.porc_descuento style=style %}
+    </div>
+    <div class="col-md-12">
+    {% render_field serializer.foto_principal style=style %}
+    </div>
+    <div class="col-md-12">
+    {% render_field serializer.color style=style %}
+    </div>
+    <input class="btn bg-green pull-right" type="submit" value="Guardar">
+  </form>
+{% endblock %}

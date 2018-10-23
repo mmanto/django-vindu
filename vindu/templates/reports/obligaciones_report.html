@@ -1,0 +1,67 @@
+{% extends 'reports/base_report.html' %}
+
+{% block file_title %}Vindu - Obligaciones{% endblock %}
+
+{% block page_title %}Reporte de Obligaciones {% endblock %}
+
+{% block page_styles %}
+     background-image: url({{ MEDIA_URL }}images/report-bg.jpg);
+{% endblock %}
+
+{% block extrastyle %}
+	
+	
+    #report{
+    	padding: 2px 2px 2px 2px;
+        font-size: 12px;
+        text-align: left;        
+    }
+    
+    #report table {
+    	border: 0;
+    	font-size: 11px;
+    	text-align: left;
+    	
+    }
+    
+    #report th{
+    	font-weight: bold;
+    	border-top: 0.5px solid black;
+        border-bottom: 0.5px solid black;
+        vertical-align: middle;
+    }
+	
+	#mid {
+        text-align: left;
+        
+    }
+    
+    #mid td, #mid p{
+        font-size:13px;
+    }
+    
+{% endblock %}
+
+
+{% block colspan1 %}9{% endblock %}
+{% block colspan2 %}9{% endblock %}
+
+{% block report_content %}
+<h2 style="-pdf-keep-with-next:false;">Obligaciones desde {{ desde|date:"SHORT_DATE_FORMAT" }} al {{ hasta|date:"SHORT_DATE_FORMAT" }}.</h2>
+<h3>
+{% if marca %}Marca: {{ marca }} <br />{% endif %}
+{% if estado_liquidacion %}Estado de Liquidación: {{ estado_liq_display }} <br />{% endif %}
+</h3>
+<hr/>
+
+<br/>
+
+{% for obligacion in obligaciones %}
+<p>{{ obligacion.pedido.nro_pedido }} - {{ obligacion.pedido.marca.nombre }} - {{ obligacion.concepto }} - {{ obligacion.importe_adeudado}} - {{ obligacion.estado_liquidacion}}</p>
+
+<hr/>
+<br/>
+<br/>
+{% endfor %}
+
+{% endblock%}

@@ -1,0 +1,135 @@
+<html>
+<head>
+<title>{% block file_title %}Vindu{% endblock %}</title>
+<style>
+    
+    #header {
+    	margin-bottom: 20px;
+    }
+    
+    
+    #header tr {
+        font-weight: bold;
+        border-bottom: 2px solid black;
+    }
+    
+    #header td {
+    	vertical-align: middle;
+    	text-align: center;
+    	}
+    
+    h1 {
+    	font-size: 18pt;    	    	    	
+    }
+    
+    #footerContent {
+    	padding-top: 10px;
+    	font-size: 12px;
+    }
+
+    
+@page {
+    margin: 1cm;
+    margin-bottom: 4cm;
+    {% block page_styles %}{% endblock %}
+	
+  @frame footer {
+    -pdf-frame-content: footerContent;
+    bottom: 1cm;
+    margin-left: 1cm;
+    margin-right: 1cm;
+    height: 2.5cm;
+    text-align: right;
+  }
+  
+  {% block extra_frames %}{% endblock %}
+  
+}
+
+
+
+{% block extrastyle %}{% endblock %}
+    #mid {
+        text-align: left;
+        border-bottom: 1px solid;
+    }
+	
+	
+    #report{
+    	padding: 2px 2px 2px 2px;
+        font-size: 12px;
+        text-align: left;
+    }
+    
+    #report table {
+    	border: 0.5px solid;
+    	text-align: left;
+    	
+    }
+    
+    #report th{
+    	font-weight: bold;
+    }
+
+    #logo {
+        width:auto;
+        height:120px;
+    }
+
+    
+</style>
+</head>
+<body>
+   <table border="2" bordercolor="#000000" keepmaxheight="20cm" width="100%">
+{% block page_header %}
+<table id="header">
+	{% if format == 'pdf' %}
+    <tr style="width:100%">
+        <td style="height:150px;width:320px;text-align:left;vertical-align:middle;margin-left:15px;padding:15px;"><img id="logo" src="{{ MEDIA_URL }}{{logo_empresa}}" ></td>
+        <td><h1>
+    {% else %}
+    <tr style="width:100%">
+        <td></td>
+    <tr><td colspan={% block colspan1 %}5{% endblock %} style="height:150px;" ></td></tr>
+    <tr>
+    	<td colspan={% block colspan2 %}5{% endblock %}><h1>
+    {% endif %}
+    {% block page_title %}{% endblock %}</h1>{% block page_header_extra %}{% endblock %}</td>
+    
+    </tr>
+</table>
+
+{% endblock %}
+	
+<div id="report">
+{% block report %}
+	
+		<div id="mid">
+		{% block report_header %}
+		{% endblock %}
+		</div>
+		
+		{% block report_content %}{% endblock%}
+	
+{% endblock %}
+</div>
+<div id="footerContent">
+{% block page_footer %}
+	<table>
+		<tr style="border-bottom: 0.5px solid; ">
+            <td>{% now "d/m/Y" %}</td>
+            <td style="text-align: right;">
+	      {% if format == 'pdf' %}
+                Página
+                <pdf:pagenumber>
+	      {% endif %}
+            </td>	
+		</tr>
+	</table>
+
+{% endblock %}   
+</div>
+</table>
+</body>
+</html>
+ 

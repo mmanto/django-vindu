@@ -12,9 +12,23 @@
 
     <link href="{% static 'base/css/bootstrap.min.css' %}" rel="stylesheet" type="text/css">
     <link href="{% static 'base/css/styles.css' %}" rel="stylesheet" type="text/css">
-    <link href="https://getbootstrap.com/docs/3.3/examples/navbar-fixed-top/navbar-fixed-top.css" rel="stylesheet" type"text/css">
+    <link href="https://getbootstrap.com/docs/3.3/examples/navbar-fixed-top/navbar-fixed-top.css" rel="stylesheet" type="text/css">
     <link href="{% static 'base/css/no-more-tables.css' %}" rel="stylesheet" type="text/css">
     <link href="{% static 'base/css/responsiveslides.css' %}" rel="stylesheet" type="text/css">
+
+    <link rel="manifest" href="{% static 'push-notifications/manifest.json'%}">
+    <script type="text/javascript" src="https://cdn.pushwoosh.com/webpush/v3/pushwoosh-web-notifications.js" async></script>
+    <script>
+        var Pushwoosh = Pushwoosh || [];
+        Pushwoosh.push(["init", {
+            logLevel: 'error', // possible values: error, info, debug
+            applicationCode: 'B4E90-B9336',
+            safariWebsitePushID: 'web.com.example.domain',
+            defaultNotificationTitle: 'Vindu',
+            defaultNotificationImage: '{% static 'push-notifications/img/ico_vindu.jpg' %}',
+            autoSubscribe: true,
+        }]);
+    </script>
     <style>
     </style>
     {% block extrahead %}

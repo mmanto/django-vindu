@@ -26,6 +26,13 @@ from django.contrib.auth import views
 admin.site.site_header = 'Administración de Vindu'
 admin.site.site_title = 'Administración de Vindu'
 
+
+def pw_service_worker(request):
+    file_path = settings.PROJECT_DIR + '\\static\\push-notifications\\pushwoosh-service-worker.js'
+    with open(file_path, 'rb') as data:
+        return HttpResponse(data, content_type='application/javascript')
+
+
 urlpatterns = [
     #url(r'^$', RedirectView.as_view(url='/admin')),
     url(r'^admin/', admin.site.urls),
@@ -51,6 +58,7 @@ urlpatterns = [
     url(r'configuraciones/', include('configuraciones.urls')),
     url(r'pagos/', include('pagos.urls', namespace='pagos')),
     url(r'reportes/', include('reportes.urls', namespace='reportes')),
+    url('^pushwoosh-service-worker\.js.*$', pw_service_worker),
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT) 
 
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

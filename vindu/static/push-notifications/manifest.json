@@ -1,0 +1,7 @@
+{
+  "name": "Pushwoosh VinduApp",
+  "short_name": "VinduApp Notifications",
+  "gcm_sender_id": "911926656842",
+  "display": "standalone",
+  "gcm_user_visible_only": true
+}

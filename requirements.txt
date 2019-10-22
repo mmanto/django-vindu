@@ -24,7 +24,7 @@ idna==2.6
 jsmin==2.2.2
 mercadopago==0.3.4
 oauthlib==2.0.6
-Pillow==5.0.0
+Pillow==6.2.0
 psycopg2==2.7.3.2
 PyJWT==1.5.3
 PyPDF2==1.26.0
